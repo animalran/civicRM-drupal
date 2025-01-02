@@ -1,0 +1,41 @@
+
+services:
+  web:
+    image: drupal:latest
+    container_name: drupal_civicrm
+    ports:
+      - "8080:80"
+    environment:
+      DRUPAL_DB_HOST: db
+      DRUPAL_DB_USER: drupaluser
+      DRUPAL_DB_PASSWORD: drupalpassword
+      DRUPAL_DB_NAME: drupal
+    volumes:
+      - drupal_data:/var/www/html
+
+  db:
+    image: mysql:5.7
+    container_name: drupal_db
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpassword
+      MYSQL_DATABASE: drupal
+      MYSQL_USER: drupaluser
+      MYSQL_PASSWORD: drupalpassword
+    volumes:
+      - db_data:/var/lib/mysql
+
+  civicrm:
+    image: civicrm/civicrm-drupal:latest
+    container_name: civicrm
+    environment:
+      DB_HOST: db
+      DB_NAME: drupal
+      DB_USER: drupaluser
+      DB_PASS: drupalpassword
+    depends_on:
+      - web
+      - db
+
+volumes:
+  drupal_data:
+  db_data:
