@@ -27,17 +27,6 @@ services:
     volumes:
       - db_data:/var/lib/mysql
 
-  civicrm:
-    image: civicrm/civicrm:latest
-    container_name: civicrm
-    environment:
-      DB_HOST: db
-      DB_NAME: drupal
-      DB_USER: drupaluser
-      DB_PASS: drupalpassword
-    depends_on:
-      - web
-      - db
 
 volumes:
   drupal_data:
