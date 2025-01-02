@@ -28,7 +28,7 @@ services:
       - db_data:/var/lib/mysql
 
   civicrm:
-    image: civicrm/civicrm-drupal:latest
+    image: civicrm/civicrm:latest
     container_name: civicrm
     environment:
       DB_HOST: db
