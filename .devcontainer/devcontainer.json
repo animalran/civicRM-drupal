@@ -1,14 +1,19 @@
 {
-  "name": "Drupal + CiviCRM Setup",
-  "dockerComposeFile": ["../docker-compose.yml"],
-  "service": "web",
-  "workspaceFolder": "/var/www/html",
+  "name": "Docker with Drupal and CiviCRM",
+  "image": "mcr.microsoft.com/devcontainers/base:ubuntu", 
+  "features": {
+    "docker-in-docker": {}
+  },
+  "postCreateCommand": "docker --version && docker-compose --version",
   "forwardPorts": [8080],
-  "extensions": [
-    "ms-azuretools.vscode-docker", 
-    "dbaeumer.vscode-eslint", 
-    "eamodio.gitlens", 
-    "wix.vscode-php-debug" 
-  ]
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "ms-azuretools.vscode-docker", 
+        "dbaeumer.vscode-eslint", 
+        "eamodio.gitlens", 
+        "wix.vscode-php-debug"
+      ]
+    }
+  }
 }
-
